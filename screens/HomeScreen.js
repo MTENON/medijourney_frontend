@@ -1,5 +1,4 @@
 import { StyleSheet, Text, View, TextInput } from 'react-native';
-import { useState } from 'react';
 import { useForm } from '../hooks/useForm';
 
 import ButtonCircle from '../components/atoms/ButtonCircle';
@@ -7,7 +6,6 @@ import ButtonCircle from '../components/atoms/ButtonCircle';
 export default function HomeScreen({ navigation }) {
 
     const { handleChange, formData } = useForm();
-    console.log(formData)
 
     const fields = [
         {
@@ -31,7 +29,7 @@ export default function HomeScreen({ navigation }) {
 
             {inputs}
 
-            <ButtonCircle />
+            <ButtonCircle iconValue={"checkIcon"} />
         </View>
     );
 };
