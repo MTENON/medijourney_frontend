@@ -1,7 +1,7 @@
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { StyleSheet, Text, ImageBackground, Image } from 'react-native';
 import { useForm } from '../hooks/useForm';
 
-import ButtonCircle from '../components/atoms/ButtonCircle';
+import { ButtonCircle, InputBox } from "../components/components.js"
 
 export default function HomeScreen({ navigation }) {
 
@@ -18,27 +18,49 @@ export default function HomeScreen({ navigation }) {
             placeholder: "Password"
         }
     ]
-
     const inputs = fields.map((value) => {
-        return <TextInput key={value.name} {...value} onChangeText={e => handleChange(value.name, e)}></TextInput>
+
+        return <InputBox key={value.name} {...value} onChangeText={e => handleChange(value.name, e)} />
     })
 
+    function handlePress() {
+        console.log(formData);
+    }
+
     return (
-        <View style={styles.body}>
-            <Text>HomeScreen</Text>
+
+        <ImageBackground
+            source={require("../assets/background.png")}
+            style={styles.body}
+        >
+            <Image
+                source={require("../assets/Fiole étoilée.png")}
+                style={styles.logo}
+            />
+            <Text style={styles.title}>MediJourney</Text>
 
             {inputs}
 
-            <ButtonCircle iconValue={"checkIcon"} />
-        </View>
+            <ButtonCircle iconValue={"drugIcon"} action={handlePress} />
+        </ImageBackground>
     );
 };
 
 const styles = StyleSheet.create({
     body: {
-        flex: 1,
+        height: "100%",
+        width: "100%",
+        display: "flex",
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    title: {
+        fontSize: 32,
+        color: "whitesmoke"
+    },
+    logo: {
+        height: 300,
+        width: 300
     }
 })
